@@ -7,10 +7,8 @@ import org.gradle.testfixtures.ProjectBuilder
 import org.gradle.api.Project
 import spock.lang.Specification
 
-/**
- * A simple unit test for the 'com.twilio.guardrail.greeting' plugin.
- */
-public class GuardrailGradlePluginPluginTest extends Specification {
+
+class GuardrailGradlePluginPluginTest extends Specification {
     def "plugin registers task"() {
         given:
         def project = ProjectBuilder.builder().build()
@@ -19,6 +17,6 @@ public class GuardrailGradlePluginPluginTest extends Specification {
         project.plugins.apply("com.twilio.guardrail")
 
         then:
-        project.tasks.findByName("greeting") != null
+        project.tasks.findByName("generate") != null
     }
 }

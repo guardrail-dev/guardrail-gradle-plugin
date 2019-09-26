@@ -29,12 +29,12 @@ public class GuardrailGradlePluginPluginFunctionalTest extends Specification {
         def runner = GradleRunner.create()
         runner.forwardOutput()
         runner.withPluginClasspath()
-        runner.withArguments("greeting")
+        runner.withArguments("blah")
         runner.withProjectDir(projectDir)
         def result = runner.build()
 
         then:
-        result.output.contains("Hello from plugin 'com.twilio.guardrail'")
+        result.output.contains("plugin placeholder")
     }
 
     File file(String name) {

@@ -12,9 +12,9 @@ import org.gradle.api.Plugin
 public class GuardrailGradlePluginPlugin implements Plugin<Project> {
     public void apply(Project project) {
         // Register a task
-        project.tasks.register("greeting") {
+        project.tasks.register("generate") {
             doLast {
-                println("Hello from plugin 'com.twilio.guardrail'")
+                println("plugin placeholder")
             }
         }
     }
