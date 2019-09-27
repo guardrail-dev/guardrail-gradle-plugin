@@ -23,11 +23,28 @@ dependencies {
     testImplementation 'cglib:cglib-nodep:3.2.10'
 }
 
+group = 'com.twilio'
+version = System.getenv('CIRCLE_TAG') ?: 'SNAPSHOT'
+
 gradlePlugin {
     plugins {
-        guardrail {
+        guardrailPlugin {
             id = 'com.twilio.guardrail'
             implementationClass = 'com.twilio.guardrail.GuardrailGradlePlugin'
+        }
+    }
+}
+
+pluginBundle {
+    website = 'https://github.com/head-thrash/guardrail-gradle-plugin'
+    vcsUrl = 'https://github.com/head-thrash/guardrail-gradle-plugin'
+    description = 'Twilio Guardrail Generator Plugin'
+    tags = ['twilio', 'api', 'generator']
+
+    plugins {
+        guardrailPlugin {
+            id = 'com.twilio.guardrail'
+            displayName = 'Twilio Guardrail Generator Plugin'
         }
     }
 }
