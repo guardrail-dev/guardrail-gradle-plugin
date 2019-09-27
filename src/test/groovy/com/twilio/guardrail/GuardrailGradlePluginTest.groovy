@@ -8,7 +8,7 @@ import org.gradle.api.Project
 import spock.lang.Specification
 
 
-class GuardrailGradlePluginPluginTest extends Specification {
+class GuardrailGradlePluginTest extends Specification {
     def "plugin registers task"() {
         given:
         def project = ProjectBuilder.builder().build()
@@ -17,6 +17,6 @@ class GuardrailGradlePluginPluginTest extends Specification {
         project.plugins.apply("com.twilio.guardrail")
 
         then:
-        project.tasks.findByName("generate") != null
+        project.tasks.findByName("guardrail") != null
     }
 }

@@ -6,10 +6,7 @@ package com.twilio.guardrail
 import spock.lang.Specification
 import org.gradle.testkit.runner.GradleRunner
 
-/**
- * A simple functional test for the 'com.twilio.guardrail' plugin.
- */
-public class GuardrailGradlePluginPluginFunctionalTest extends Specification {
+class GuardrailGradlePluginFunctionalTest extends Specification {
     def setup() {
         file('functionalTest').deleteDir()
     }
@@ -18,26 +15,38 @@ public class GuardrailGradlePluginPluginFunctionalTest extends Specification {
         given:
         def projectDir = new File("build/functionalTest")
         projectDir.mkdirs()
+        def resourceDirs = new File("build/functionalTest/src/main/resources")
+        resourceDirs.mkdirs()
         new File(projectDir, "settings.gradle") << ""
         new File(projectDir, "build.gradle") << """
             plugins {
                 id('com.twilio.guardrail')
             }
+            
+            guardrail {
+                inputFile = file('src/main/resources/pet_store_v2.yml')
+                packageName = 'com.foobar.generated'
+            }
         """
+
+        new File(resourceDirs, "pet_store_v2.yml") <<
+            this.getClass().getResource("/pet_store_v2.yml").text
 
         when:
         def runner = GradleRunner.create()
         runner.forwardOutput()
         runner.withPluginClasspath()
-        runner.withArguments("blah")
+        runner.withArguments("guardrail")
         runner.withProjectDir(projectDir)
         def result = runner.build()
 
         then:
-        result.output.contains("plugin placeholder")
+        !result.output.contains("Error")
     }
 
     File file(String name) {
         new File("build", name)
     }
+
+
 }
