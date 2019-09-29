@@ -33,7 +33,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Pets"
-        default:
+        '500':
           description: unexpected error
           content:
             application/json:
@@ -47,7 +47,7 @@ paths:
       responses:
         '201':
           description: Null response
-        default:
+        '500':
           description: unexpected error
           content:
             application/json:
@@ -73,7 +73,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Pet"
-        default:
+        '500':
           description: unexpected error
           content:
             application/json:

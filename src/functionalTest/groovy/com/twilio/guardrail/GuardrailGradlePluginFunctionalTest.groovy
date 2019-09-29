@@ -24,13 +24,28 @@ class GuardrailGradlePluginFunctionalTest extends Specification {
             }
             
             guardrail {
-                inputFile = file('src/main/resources/pet_store_v2.yml')
-                packageName = 'com.foobar.generated'
+                petstoreV2 {
+                    inputFile = file('src/main/resources/pet_store_v2.yml')
+                    gen {
+                        packageName = 'com.foobar.generated.pet_store_v2'
+                    }
+                }
+                petstoreV3 {
+                    inputFile = file('src/main/resources/pet_store_v3.yml')
+                    gen {
+                        packageName = 'com.foobar.generated.pet_store_v3'
+                        language = 'java'
+                        framework = 'dropwizard'
+                    } 
+                }
             }
         """
 
         new File(resourceDirs, "pet_store_v2.yml") <<
             this.getClass().getResource("/pet_store_v2.yml").text
+
+        new File(resourceDirs, "pet_store_v3.yml") <<
+            this.getClass().getResource("/pet_store_v3.yml").text
 
         when:
         def runner = GradleRunner.create()

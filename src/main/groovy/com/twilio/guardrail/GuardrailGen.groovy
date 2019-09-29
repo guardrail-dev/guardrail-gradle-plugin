@@ -1,26 +1,26 @@
 package com.twilio.guardrail
 
-
-import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.*
 
 @Slf4j
 @CacheableTask
-@CompileStatic
-class GuardrailTask extends DefaultTask {
+class GuardrailGen extends DefaultTask {
 
     @InputFiles
+    @SkipWhenEmpty
     File inputFile
 
     @OutputDirectory
     File outputDir
 
     @Input
+    @Optional
     String language = "scala"
 
     @Input
+    @Optional
     String kind = "client"
 
     @Input
@@ -35,6 +35,7 @@ class GuardrailTask extends DefaultTask {
     Boolean tracing = false
 
     @Input
+    @Optional
     String framework = "akka-http"
 
     @Input
@@ -47,7 +48,7 @@ class GuardrailTask extends DefaultTask {
 
     CLICommon cli = CLI$.MODULE$
 
-    GuardrailTask() {
+    GuardrailGen() {
         outputDir = new File(project.buildDir, 'guardrail-sources')
     }
 
@@ -87,6 +88,14 @@ class GuardrailTask extends DefaultTask {
 
         if (dtoPackage) {
             args << '--dtoPackage' << dtoPackage
+        }
+
+        if (framework) {
+            args << '--framework' << framework
+        }
+
+        if (language) {
+            args <<  language
         }
 
         cli.main(args as String[])
