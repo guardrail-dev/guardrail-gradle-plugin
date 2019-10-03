@@ -77,10 +77,10 @@ class GuardrailGen extends DefaultTask {
     void exec() {
         def args = []
 
+        args << "--$kind"
         args << '--specPath' << inputFile.path
         args << '--outputPath' << outputDir.path
         args << '--packageName' << packageName
-        args << "--$kind"
 
         if (tracing) {
             args << '--tracing'

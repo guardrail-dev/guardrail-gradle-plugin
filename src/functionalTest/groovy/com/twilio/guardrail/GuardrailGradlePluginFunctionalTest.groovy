@@ -11,35 +11,40 @@ class GuardrailGradlePluginFunctionalTest extends Specification {
         file('functionalTest').deleteDir()
     }
 
-    def "can run task"() {
+    def 'generate java and compile'() {
         given:
         def projectDir = new File("build/functionalTest")
         projectDir.mkdirs()
         def resourceDirs = new File("build/functionalTest/src/main/resources")
         resourceDirs.mkdirs()
+        def sourceDirs = new File("build/functionalTest/src/main/java/example")
+        sourceDirs.mkdirs()
         new File(projectDir, "settings.gradle") << ""
         new File(projectDir, "build.gradle") << """
-            plugins {
-                id('com.twilio.guardrail')
-            }
-            
-            guardrail {
-                petstoreV2 {
-                    inputFile = file('src/main/resources/pet_store_v2.yml')
-                    gen {
-                        packageName = 'com.foobar.generated.pet_store_v2'
-                    }
-                }
-                petstoreV3 {
-                    inputFile = file('src/main/resources/pet_store_v3.yml')
-                    gen {
-                        packageName = 'com.foobar.generated.pet_store_v3'
-                        language = 'java'
-                        framework = 'dropwizard'
-                    } 
-                }
-            }
-        """
+plugins {
+    id('com.twilio.guardrail')
+}
+
+guardrail {
+    petstoreServer {
+        inputFile = file('src/main/resources/pet_store_v2.yml')
+        gen {
+            packageName = 'com.foobar.generated.petstore.server'
+            kind = 'server'
+            language = 'java'
+            framework = 'dropwizard'
+        }
+    }
+    petstoreClient {
+        inputFile = file('src/main/resources/pet_store_v3.yml')
+        gen {
+            packageName = 'com.foobar.generated.petstore.client'
+            language = 'scala'
+            framework = 'http4s'
+            kind = 'client'
+        } 
+    }
+}"""
 
         new File(resourceDirs, "pet_store_v2.yml") <<
             this.getClass().getResource("/pet_store_v2.yml").text
@@ -57,6 +62,14 @@ class GuardrailGradlePluginFunctionalTest extends Specification {
 
         then:
         !result.output.contains("Error")
+
+        [
+            file('functionalTest/build/guardrail-petstoreClient'),
+            file('functionalTest/build/guardrail-petstoreServer')
+        ].each {
+            it.exists()
+            it.directorySize() > 0
+        }
     }
 
     File file(String name) {
