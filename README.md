@@ -9,7 +9,7 @@ Based on [int128/gradle-swagger-generator-plugin](https://github.com/int128/grad
 Usage
 ======
 
-Example
+Common example of how to generate the client code and use it in your project:
 
 1. Generate Petstore dropwizard client
 2. Make java classes depend on generated sources
@@ -21,7 +21,7 @@ plugins {
 }
 
 dependencies {
-    ... // incert corresponding dependencies to compile
+    ... // insert corresponding dependencies to compile
 }
 
 guardrail {
