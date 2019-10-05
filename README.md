@@ -117,10 +117,3 @@ guardrail {
 This is an open source software licensed under the MIT License.
 Feel free to open issues or pull requests.
 
-CircleCI builds the plugin continuously.
-Following variables should be set.
-
-Environment Variable        | Purpose
-----------------------------|--------
-`$GRADLE_PUBLISH_KEY`       | Publish the plugin to Gradle Plugins
-`$GRADLE_PUBLISH_SECRET`    | Publish the plugin to Gradle Plugins
