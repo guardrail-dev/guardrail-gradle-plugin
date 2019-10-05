@@ -1,4 +1,4 @@
-# Gradle Swagger Generator Plugin [![CircleCI](https://circleci.com/gh/head-thrash/guardrail-gradle-plugin/tree/master.svg?style=svg)](https://circleci.com/gh/head-thrash/guardrail-gradle-plugin/tree/master) [![Gradle Status](https://gradleupdate.appspot.com/head-thrash/guardrail-gradle-plugin/status.svg)](https://gradleupdate.appspot.com/head-thrash/guardrail-gradle-plugin/status)
+# Gradle Swagger Generator Plugin [![Build Status](https://travis-ci.org/head-thrash/guardrail-gradle-plugin.svg?branch=master)](https://travis-ci.org/head-thrash/guardrail-gradle-plugin) [![Gradle Status](https://gradleupdate.appspot.com/head-thrash/guardrail-gradle-plugin/status.svg)](https://gradleupdate.appspot.com/head-thrash/guardrail-gradle-plugin/status)
 
 Gradle plugin for [Twilio Guardrail](https://github.com/twilio/guardrail) code generation.
 
