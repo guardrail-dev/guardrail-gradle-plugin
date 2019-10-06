@@ -22,7 +22,7 @@ class GuardrailGradlePluginFunctionalTest extends Specification {
         new File(projectDir, "settings.gradle") << ""
         new File(projectDir, "build.gradle") << """
 plugins {
-    id('com.twilio.guardrail')
+    id('com.twilio.guardrail.plugin')
 }
 
 guardrail {
