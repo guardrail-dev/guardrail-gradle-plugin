@@ -36,7 +36,7 @@ guardrail {
 }
 
 compileJava.dependsOn guardrail.petstore.gen
-sourceSets.main.java.srcDir "\${guardrail.petstore.gen.outputDir}"
+sourceSets.main.java.srcDir guardrail.petstore.gen.outputDir
 ```
 
 Specs
