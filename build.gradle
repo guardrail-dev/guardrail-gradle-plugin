@@ -87,20 +87,6 @@ gradlePlugin {
     }
 }
 
-pluginBundle {
-    website = 'https://github.com/head-thrash/guardrail-gradle-plugin'
-    vcsUrl = 'https://github.com/head-thrash/guardrail-gradle-plugin'
-    description = 'Twilio Guardrail Generator Plugin'
-    tags = ['twilio', 'api', 'generator']
-
-    plugins {
-        guardrailPlugin {
-            id = project.group
-            displayName = project.description
-        }
-    }
-}
-
 // Add a source set for the functional test suite
 sourceSets {
     functionalTest {
