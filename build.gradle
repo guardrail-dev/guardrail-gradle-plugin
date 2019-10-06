@@ -2,6 +2,8 @@ plugins {
     id 'java-gradle-plugin'
     id 'groovy'
     id 'com.gradle.plugin-publish' version '0.9.7'
+    id "com.jfrog.bintray" version "1.8.4"
+    id "maven-publish"
 }
 
 java {
@@ -23,13 +25,63 @@ dependencies {
     testImplementation 'cglib:cglib-nodep:3.2.10'
 }
 
-group = 'com.twilio.guardrail.plugin'
+group = 'com.twilio.guardrail.gradle.plugin'
 version = '1.0.0-SNAPSHOT'
+description = 'Twilio Guardrail Generator Plugin'
+
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+    classifier "sources"
+    extension "jar"
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    from javadoc.destinationDir
+    classifier "javadoc"
+    extension "jar"
+}
+
+publishing {
+    publications {
+        mainMaven(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+        }
+    }
+}
+
+bintray {
+    // dryRun = true
+    // publish = true
+    user = project.hasProperty("bintrayUserName") ? bintrayUserName : null
+    key = project.hasProperty("bintrayApiKey") ? bintrayApiKey : null
+    publications = ["mainMaven", "guardrailPluginMarkerMaven"]
+    pkg {
+        repo = "main"
+        name = project.name
+        //userOrg = "twilio"
+        licenses = ["MIT"]
+        desc = "Twilio Guardrail Generator Plugin"
+        websiteUrl = "https://github.com/head-thrash/guardrail-gradle-plugin"
+        issueTrackerUrl = 'https://github.com/head-thrash/guardrail-gradle-plugin/issues'
+        vcsUrl = "https://github.com/head-thrash/guardrail-gradle-plugin"
+        labels = ['twilio', 'api', 'generator']
+        githubRepo = "head-thrash/gradle-avro-plugin"
+        version {
+            name = project.version
+            vcsTag = project.version
+        }
+    }
+}
+
+bintrayUpload.dependsOn build, { generatePomFileForGuardrailPluginMarkerMavenPublication }
 
 gradlePlugin {
     plugins {
-        guardrailPlugin {
-            id = 'com.twilio.guardrail.plugin'
+        guardrail {
+            id = project.group
             implementationClass = 'com.twilio.guardrail.GuardrailGradlePlugin'
         }
     }
@@ -43,8 +95,8 @@ pluginBundle {
 
     plugins {
         guardrailPlugin {
-            id = 'com.twilio.guardrail.plugin'
-            displayName = 'Twilio Guardrail Generator Plugin'
+            id = project.group
+            displayName = project.description
         }
     }
 }
