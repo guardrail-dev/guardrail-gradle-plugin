@@ -26,9 +26,12 @@ dependencies {
 }
 
 group = 'com.twilio.guardrail.gradle.plugin'
-version = '1.0.1-SNAPSHOT'
-description = 'Twilio Guardrail Generator Plugin'
 
+version = project.hasProperty('releaseVersion')
+    ? project.releaseVersion
+    : '1.0.0-SNAPSHOT'
+
+description = 'Twilio Guardrail Generator Plugin'
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
@@ -72,6 +75,9 @@ bintray {
         version {
             name = project.version
             vcsTag = project.version
+            gpg {
+                sign = true
+            }
         }
     }
 }
