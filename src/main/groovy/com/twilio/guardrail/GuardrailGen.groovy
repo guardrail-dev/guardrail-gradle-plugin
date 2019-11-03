@@ -98,6 +98,11 @@ class GuardrailGen extends DefaultTask {
             args << '--framework' << framework
         }
 
+        customImports.each {
+            args << '--import'
+            args << it
+        }
+
         cli.main(args as String[])
     }
 }
