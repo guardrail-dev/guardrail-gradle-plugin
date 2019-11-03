@@ -46,6 +46,10 @@ class GuardrailGen extends DefaultTask {
     @Optional
     List<String> customImports = []
 
+    @Input
+    @Optional
+    List<String> modules = []
+
     CLICommon cli = CLI$.MODULE$
 
     GuardrailGen() {
@@ -100,6 +104,11 @@ class GuardrailGen extends DefaultTask {
 
         customImports.each {
             args << '--import'
+            args << it
+        }
+
+        modules.each {
+            args << '--module'
             args << it
         }
 
