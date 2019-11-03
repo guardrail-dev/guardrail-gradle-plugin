@@ -77,6 +77,10 @@ class GuardrailGen extends DefaultTask {
     void exec() {
         def args = []
 
+        if (language) {
+            args <<  language
+        }
+
         args << "--$kind"
         args << '--specPath' << inputFile.path
         args << '--outputPath' << outputDir.path
@@ -92,10 +96,6 @@ class GuardrailGen extends DefaultTask {
 
         if (framework) {
             args << '--framework' << framework
-        }
-
-        if (language) {
-            args <<  language
         }
 
         cli.main(args as String[])
