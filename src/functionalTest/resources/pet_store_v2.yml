@@ -102,12 +102,8 @@ paths:
           required: true
           type: "array"
           items:
-            type: "string"
-            enum:
-              - "available"
-              - "pending"
-              - "sold"
-            default: "available"
+            $ref: "#/definitions/PetStatus"
+            # default: "available"
           collectionFormat: "multi"
       responses:
         200:
@@ -593,12 +589,9 @@ definitions:
         type: "string"
         format: "date-time"
       status:
-        type: "string"
         description: "Order Status"
-        enum:
-          - "placed"
-          - "approved"
-          - "delivered"
+        schema:
+          $ref: "#/definitions/PetStatus"
       complete:
         type: "boolean"
         default: false
@@ -677,12 +670,9 @@ definitions:
         items:
           $ref: "#/definitions/Tag"
       status:
-        type: "string"
         description: "pet status in the store"
-        enum:
-          - "available"
-          - "pending"
-          - "sold"
+        schema:
+          $ref: "#/definitions/PetStatus"
     xml:
       name: "Pet"
   ApiResponse:
@@ -695,6 +685,13 @@ definitions:
         type: "string"
       message:
         type: "string"
+  PetStatus:
+    description: "pet status in the store"
+    type: "string"
+    enum:
+      - "available"
+      - "pending"
+      - "sold"
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"
