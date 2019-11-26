@@ -46,6 +46,10 @@ class GuardrailGen extends DefaultTask {
     @Optional
     List<String> customImports = []
 
+    @Input
+    @Optional
+    List<String> modules = []
+
     CLICommon cli = CLI$.MODULE$
 
     GuardrailGen() {
@@ -77,6 +81,10 @@ class GuardrailGen extends DefaultTask {
     void exec() {
         def args = []
 
+        if (language) {
+            args <<  language
+        }
+
         args << "--$kind"
         args << '--specPath' << inputFile.path
         args << '--outputPath' << outputDir.path
@@ -94,8 +102,14 @@ class GuardrailGen extends DefaultTask {
             args << '--framework' << framework
         }
 
-        if (language) {
-            args <<  language
+        customImports.each {
+            args << '--import'
+            args << it
+        }
+
+        modules.each {
+            args << '--module'
+            args << it
         }
 
         cli.main(args as String[])
