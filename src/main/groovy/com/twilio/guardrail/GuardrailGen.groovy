@@ -112,6 +112,6 @@ class GuardrailGen extends DefaultTask {
             args << it
         }
 
-        cli.main(args as String[])
+        cli.processArgs(args as String[])
     }
 }
