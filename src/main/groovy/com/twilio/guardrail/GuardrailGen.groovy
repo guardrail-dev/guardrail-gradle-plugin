@@ -10,6 +10,7 @@ class GuardrailGen extends DefaultTask {
 
     @InputFiles
     @SkipWhenEmpty
+    @PathSensitive(value = PathSensitivity.RELATIVE)
     File inputFile
 
     @OutputDirectory
@@ -50,7 +51,7 @@ class GuardrailGen extends DefaultTask {
     @Optional
     List<String> modules = []
 
-    CLICommon cli = CLI$.MODULE$
+    private CLICommon cli = CLI$.MODULE$
 
     GuardrailGen() {
         outputDir = new File(project.buildDir, 'guardrail-sources')
