@@ -67,11 +67,11 @@ bintray {
         //userOrg = "twilio"
         licenses = ["MIT"]
         desc = "Twilio Guardrail Generator Plugin"
-        websiteUrl = "https://github.com/head-thrash/guardrail-gradle-plugin"
-        issueTrackerUrl = 'https://github.com/head-thrash/guardrail-gradle-plugin/issues'
-        vcsUrl = "https://github.com/head-thrash/guardrail-gradle-plugin"
+        websiteUrl = "https://github.com/twilio/guardrail-gradle-plugin"
+        issueTrackerUrl = 'https://github.com/twilio/guardrail-gradle-plugin/issues'
+        vcsUrl = "https://github.com/twilio/guardrail-gradle-plugin"
         labels = ['twilio', 'api', 'generator']
-        githubRepo = "head-thrash/guardrail-gradle-plugin"
+        githubRepo = "twilio/guardrail-gradle-plugin"
         version {
             name = project.version
             vcsTag = project.version
