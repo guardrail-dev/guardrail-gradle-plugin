@@ -22,7 +22,7 @@ dependencies {
     testImplementation('org.spockframework:spock-core:1.3-groovy-2.5') {
         exclude module: 'groovy-all'
     }
-    testImplementation 'cglib:cglib-nodep:3.2.10'
+    testImplementation 'cglib:cglib-nodep:3.3.0'
 }
 
 group = 'com.twilio.guardrail.gradle.plugin'
