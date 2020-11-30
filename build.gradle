@@ -56,7 +56,7 @@ publishing {
 }
 
 bintray {
-    // dryRun = true
+    dryRun = project.hasProperty("dryRun")
     // publish = true
     user = project.hasProperty("bintrayUserName") ? bintrayUserName : null
     key = project.hasProperty("bintrayApiKey") ? bintrayApiKey : null
