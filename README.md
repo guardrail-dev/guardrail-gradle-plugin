@@ -14,10 +14,14 @@ Common example of how to generate the client code and use it in your project:
 1. Generate Petstore dropwizard client
 2. Make java classes depend on generated sources
 
-```build.gradle 
+```build.gradle
 plugins {
     id('java')
     id('com.twilio.guardrail.gradle.plugin')
+}
+
+repositories {
+    jcenter()
 }
 
 dependencies {
