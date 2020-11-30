@@ -66,9 +66,9 @@ bintray {
         name = project.name
         licenses = ["MIT"]
         desc = "Twilio Guardrail Generator Plugin"
-        websiteUrl = "https://github.com/twilio/releases/guardrail-gradle-plugin"
-        issueTrackerUrl = 'https://github.com/twilio/releases/guardrail-gradle-plugin/issues'
-        vcsUrl = "https://github.com/twilio/releases/guardrail-gradle-plugin"
+        websiteUrl = "https://github.com/twilio/guardrail-gradle-plugin"
+        issueTrackerUrl = 'https://github.com/twilio/guardrail-gradle-plugin/issues'
+        vcsUrl = "https://github.com/twilio/guardrail-gradle-plugin"
         labels = ['twilio', 'api', 'generator']
         githubRepo = "twilio/guardrail-gradle-plugin"
         version {
