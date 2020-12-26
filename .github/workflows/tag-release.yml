@@ -1,0 +1,45 @@
+name: Tag release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ '8' ]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: ${{ matrix.java }}
+    - name: print Java version
+      run: java -version
+    - uses: actions/cache@v2
+      with:
+        path: ~/.gradle/caches
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+    - name: Guess next version based on the library version
+      id: guessversion
+      run: |
+        source scripts/next-version.sh
+        echo "::set-output name=exists::${exists}"
+        echo "VERSION=${version}" >> $GITHUB_ENV
+    - name: Publish release notes
+      if: steps.guessversion.outputs.exists == 0
+      uses: release-drafter/release-drafter@v5
+      with:
+        publish: true
+        name: "v${{ env.VERSION }}"
+        tag: "v${{ env.VERSION }}"
+        version: "v${{ env.VERSION }}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
