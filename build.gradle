@@ -2,7 +2,7 @@ plugins {
     id 'java-gradle-plugin'
     id 'groovy'
     id 'com.gradle.plugin-publish' version '0.12.0'
-    id "com.jfrog.bintray" version "1.8.5"
+    id 'com.palantir.git-version' version '0.12.3'
     id "maven-publish"
 }
 
@@ -27,9 +27,7 @@ dependencies {
 
 group = 'com.twilio.guardrail.gradle.plugin'
 
-version = project.hasProperty('releaseVersion')
-    ? project.releaseVersion
-    : '1.0.0-SNAPSHOT'
+version = gitVersion()
 
 description = 'Twilio Guardrail Generator Plugin'
 
@@ -55,39 +53,10 @@ publishing {
     }
 }
 
-bintray {
-    dryRun = project.hasProperty("dryRun")
-    // publish = true
-    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
-    publications = ["mainMaven", "guardrailPluginMarkerMaven"]
-    pkg {
-        userOrg = "twilio"
-        repo = "releases"
-        name = project.name
-        licenses = ["MIT"]
-        desc = "Twilio Guardrail Generator Plugin"
-        websiteUrl = "https://github.com/twilio/guardrail-gradle-plugin"
-        issueTrackerUrl = 'https://github.com/twilio/guardrail-gradle-plugin/issues'
-        vcsUrl = "https://github.com/twilio/guardrail-gradle-plugin"
-        labels = ['twilio', 'api', 'generator']
-        githubRepo = "twilio/guardrail-gradle-plugin"
-        githubReleaseNotesFile = 'CHANGES.md'
-        version {
-            name = project.version
-            vcsTag = project.version
-            gpg {
-                sign = true
-            }
-        }
-    }
-}
-
-bintrayUpload.dependsOn build, { generatePomFileForGuardrailPluginMarkerMavenPublication }
 
 gradlePlugin {
     plugins {
-        guardrail {
+        guardrailPlugin {
             id = project.group
             implementationClass = 'com.twilio.guardrail.GuardrailGradlePlugin'
         }
@@ -112,4 +81,17 @@ task functionalTest(type: Test) {
 check {
     // Run the functional tests as part of `check`
     dependsOn(tasks.functionalTest)
+}
+
+pluginBundle {
+  website = 'https://guardrail.dev/'
+  vcsUrl = 'https://github.com/twilio/guardrail'
+  description = 'Principled code generation from OpenAPI specifications'
+  tags = ['openapi', 'swagger', 'codegen', 'scala', 'java']
+
+  plugins {
+    guardrailPlugin {
+      displayName = 'guardrail gradle plugin'
+    }
+  }
 }
