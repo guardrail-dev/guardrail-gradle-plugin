@@ -2,6 +2,7 @@ plugins {
     id 'java-gradle-plugin'
     id 'groovy'
     id 'com.gradle.plugin-publish' version '0.12.0'
+    id 'com.palantir.git-version' version '0.12.3'
     id "maven-publish"
 }
 
@@ -26,9 +27,7 @@ dependencies {
 
 group = 'com.twilio.guardrail.gradle.plugin'
 
-version = project.hasProperty('releaseVersion')
-    ? project.releaseVersion
-    : '1.0.0-SNAPSHOT'
+version = gitVersion()
 
 description = 'Twilio Guardrail Generator Plugin'
 
