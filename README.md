@@ -40,7 +40,11 @@ guardrail {
 }
 
 compileJava.dependsOn guardrail.petstore.gen
-sourceSets.main.java.srcDir guardrail.petstore.gen.outputDir
+
+// Include the generated sources as part of the build
+// Feel free to delete the one that does not apply to your project
+sourceSets.main.scala.srcDirs += new File(buildDir, 'guardrail-sources/scala')
+sourceSets.main.java.srcDirs  += new File(buildDir, 'guardrail-sources/java')
 ```
 
 Specs
@@ -72,7 +76,6 @@ guardrail {                                         // plugin declaration
     }
 
 }
-
 ```
 
 Available frameworks
