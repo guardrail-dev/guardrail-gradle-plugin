@@ -27,7 +27,7 @@ dependencies {
 
 group = 'com.twilio.guardrail'
 
-version = gitVersion()
+version = gitVersion().substring(1) // gradle-git-version does not support leading `v` in `v0.1.2`: https://github.com/palantir/gradle-git-version/issues/72
 
 description = 'Twilio Guardrail Generator Plugin'
 
