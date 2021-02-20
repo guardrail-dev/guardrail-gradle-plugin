@@ -57,27 +57,6 @@ class GuardrailGen extends DefaultTask {
         outputDir = new File(project.buildDir, 'guardrail-sources')
     }
 
-    /**
-     * Examples:
-     *   Generate a client, put it in src/main/scala under the com.twilio.messaging.console.clients package, with
-     *   OpenTracing support:
-     *     guardrail --specPath client-specs/account-events-api.json --outputPath src/main/scala --packageName com
-     *     .twilio.messaging.console.clients --tracing
-     *
-     *   Generate two clients, put both in src/main/scala, under different packages, one with tracing, one without:
-     *     guardrail \\
-     *       --client --specPath client-specs/account-events-api.json --outputPath src/main/scala --packageName com
-     *       .twilio.messaging.console.clients.events \\
-     *       --client --specPath client-specs/account-service.json --outputPath src/main/scala --packageName com
-     *       .twilio.messaging.console.clients.account --tracing
-     *
-     *   Generate client and server routes for the same specification:
-     *     guardrail \\
-     *       --client --specPath client-specs/account-events-api.json --outputPath src/main/scala --packageName com
-     *       .twilio.messaging.console.clients.events \\
-     *       --server --specPath client-specs/account-events-api.json --outputPath src/main/scala --packageName com
-     *       .twilio.messaging.console.clients.events
-     */
     @TaskAction
     void exec() {
         def args = []
