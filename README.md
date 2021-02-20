@@ -17,7 +17,7 @@ Common example of how to generate the client code and use it in your project:
 ```build.gradle
 plugins {
     id('java')
-    id('com.twilio.guardrail.gradle.plugin')
+    id('com.twilio.guardrail')
 }
 
 repositories {
