@@ -64,8 +64,8 @@ guardrail {
         !result.output.contains("Error")
 
         [
-            file('functionalTest/build/guardrail-petstoreClient'),
-            file('functionalTest/build/guardrail-petstoreServer')
+            file('functionalTest/build/guardrail-sources/scala/com/foobar/generated/petstore/client/pets'),
+            file('functionalTest/build/guardrail-sources/java/com/foobar/generated/petstore/server/pet')
         ].each {
             it.exists()
             it.directorySize() > 0

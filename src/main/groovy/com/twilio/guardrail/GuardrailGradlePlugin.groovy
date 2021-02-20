@@ -19,8 +19,6 @@ class GuardrailGradlePlugin implements Plugin<Project> {
             guardrail.gen = createGuardrailGen(project, guardrail.name)
 
             project.tasks.guardrail.dependsOn(guardrail.gen)
-
-            guardrail.gen.outputDir = new File(project.buildDir, "guardrail-${guardrail.name}")
         }
     }
 

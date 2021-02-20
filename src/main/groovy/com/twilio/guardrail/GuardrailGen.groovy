@@ -15,6 +15,7 @@ class GuardrailGen extends DefaultTask {
 
     @OutputDirectory
     File outputDir
+    private File defaultOutputDir = null
 
     @Input
     @Optional
@@ -55,6 +56,7 @@ class GuardrailGen extends DefaultTask {
 
     GuardrailGen() {
         outputDir = new File(project.buildDir, 'guardrail-sources')
+        defaultOutputDir = outputDir
     }
 
     @TaskAction
@@ -67,7 +69,12 @@ class GuardrailGen extends DefaultTask {
 
         args << "--$kind"
         args << '--specPath' << inputFile.path
-        args << '--outputPath' << outputDir.path
+        // Why do builds need to be able to override this?
+        if (outputDir != defaultOutputDir) {
+            args << '--outputPath' << outputDir.path
+        } else {
+            args << '--outputPath' << new File(outputDir, language).path
+        }
         args << '--packageName' << packageName
 
         if (tracing) {
