@@ -18,7 +18,7 @@ jobs:
         java-version: 8
     - name: print Java version
       run: java -version
-    - name: Build with Maven
+    - name: Publish plugin
       env:
         GRADLE_PUBLISH_KEY: ${{ secrets.GRADLE_PUBLISH_KEY }}
         GRADLE_PUBLISH_SECRET: ${{ secrets.GRADLE_PUBLISH_SECRET }}
