@@ -15,6 +15,7 @@ class GuardrailGen extends DefaultTask {
 
     @OutputDirectory
     File outputDir
+    private File defaultOutputDir = null
 
     @Input
     @Optional
@@ -55,29 +56,9 @@ class GuardrailGen extends DefaultTask {
 
     GuardrailGen() {
         outputDir = new File(project.buildDir, 'guardrail-sources')
+        defaultOutputDir = outputDir
     }
 
-    /**
-     * Examples:
-     *   Generate a client, put it in src/main/scala under the com.twilio.messaging.console.clients package, with
-     *   OpenTracing support:
-     *     guardrail --specPath client-specs/account-events-api.json --outputPath src/main/scala --packageName com
-     *     .twilio.messaging.console.clients --tracing
-     *
-     *   Generate two clients, put both in src/main/scala, under different packages, one with tracing, one without:
-     *     guardrail \\
-     *       --client --specPath client-specs/account-events-api.json --outputPath src/main/scala --packageName com
-     *       .twilio.messaging.console.clients.events \\
-     *       --client --specPath client-specs/account-service.json --outputPath src/main/scala --packageName com
-     *       .twilio.messaging.console.clients.account --tracing
-     *
-     *   Generate client and server routes for the same specification:
-     *     guardrail \\
-     *       --client --specPath client-specs/account-events-api.json --outputPath src/main/scala --packageName com
-     *       .twilio.messaging.console.clients.events \\
-     *       --server --specPath client-specs/account-events-api.json --outputPath src/main/scala --packageName com
-     *       .twilio.messaging.console.clients.events
-     */
     @TaskAction
     void exec() {
         def args = []
@@ -88,7 +69,12 @@ class GuardrailGen extends DefaultTask {
 
         args << "--$kind"
         args << '--specPath' << inputFile.path
-        args << '--outputPath' << outputDir.path
+        // Why do builds need to be able to override this?
+        if (outputDir != defaultOutputDir) {
+            args << '--outputPath' << outputDir.path
+        } else {
+            args << '--outputPath' << new File(outputDir, language).path
+        }
         args << '--packageName' << packageName
 
         if (tracing) {
