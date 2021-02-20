@@ -33,6 +33,7 @@ jobs:
       id: guessversion
       run: |
         source scripts/next-version.sh
+        echo "Next release target: ${version}"
         echo "::set-output name=exists::${exists}"
         echo "VERSION=${version}" >> $GITHUB_ENV
     - name: Publish release notes
