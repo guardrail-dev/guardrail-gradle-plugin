@@ -18,7 +18,7 @@ repositories {
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
-    implementation "com.twilio:guardrail_2.12:0.63.0"
+    implementation "com.twilio:guardrail_2.12:0.64.0"
     testImplementation('org.spockframework:spock-core:1.3-groovy-2.5') {
         exclude module: 'groovy-all'
     }
