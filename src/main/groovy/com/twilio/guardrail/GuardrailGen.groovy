@@ -52,7 +52,7 @@ class GuardrailGen extends DefaultTask {
     @Optional
     List<String> modules = []
 
-    private com.twilio.guardrail.CLICommon cli = com.twilio.guardrail.CLI$.MODULE$
+    private dev.guardrail.cli.CLICommon cli = dev.guardrail.cli.CLI$.MODULE$
 
     GuardrailGen() {
         outputDir = new File(project.buildDir, 'guardrail-sources')
