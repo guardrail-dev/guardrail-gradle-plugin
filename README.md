@@ -1,8 +1,6 @@
-# Gradle Swagger Generator Plugin [![Build Status](https://github.com/twilio/guardrail-gradle-plugin/workflows/CI/badge.svg)](https://github.com/twilio/guardrail-gradle-plugin/actions?query=workflow%3ACI) [![Gradle Status](https://gradleupdate.appspot.com/twilio/guardrail-gradle-plugin/status.svg)](https://gradleupdate.appspot.com/twilio/guardrail-gradle-plugin/status)
+# Gradle Swagger Generator Plugin [![Build Status](https://github.com/guardrail-dev/guardrail-gradle-plugin/workflows/CI/badge.svg)](https://github.com/twilio/guardrail-gradle-plugin/actions?query=workflow%3ACI) [![Gradle Status](https://gradleupdate.appspot.com/twilio/guardrail-gradle-plugin/status.svg)](https://gradleupdate.appspot.com/twilio/guardrail-gradle-plugin/status)
 
-Gradle plugin for [Twilio Guardrail](https://github.com/twilio/guardrail) code generation.
-
-Effectively a wrapper over Guardrail CLI. 
+Gradle plugin for [guardrail-dev/guardrail](https://github.com/guardrail-dev/guardrail) code generation.
 
 Based on [int128/gradle-swagger-generator-plugin](https://github.com/int128/gradle-swagger-generator-plugin)
 
@@ -17,7 +15,7 @@ Common example of how to generate the client code and use it in your project:
 ```build.gradle
 plugins {
     id('java')
-    id('com.twilio.guardrail')
+    id('dev.guardrail')
 }
 
 repositories {

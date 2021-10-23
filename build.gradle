@@ -25,11 +25,11 @@ dependencies {
     testImplementation 'cglib:cglib-nodep:3.3.0'
 }
 
-group = 'com.twilio.guardrail'
+group = 'dev.guardrail'
 
 version = gitVersion().substring(1) // gradle-git-version does not support leading `v` in `v0.1.2`: https://github.com/palantir/gradle-git-version/issues/72
 
-description = 'Twilio Guardrail Generator Plugin'
+description = 'guardrail OpenAPI code generator plugin'
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
@@ -58,7 +58,7 @@ gradlePlugin {
     plugins {
         guardrailPlugin {
             id = project.group
-            implementationClass = 'com.twilio.guardrail.GuardrailGradlePlugin'
+            implementationClass = 'dev.guardrail.GuardrailGradlePlugin'
         }
     }
 }
@@ -85,7 +85,7 @@ check {
 
 pluginBundle {
   website = 'https://guardrail.dev/'
-  vcsUrl = 'https://github.com/twilio/guardrail'
+  vcsUrl = 'https://github.com/guardrail-dev/guardrail'
   description = 'Principled code generation from OpenAPI specifications'
   tags = ['openapi', 'swagger', 'codegen', 'scala', 'java']
 
