@@ -1,4 +1,4 @@
-package com.twilio.guardrail
+package dev.guardrail
 
 import groovy.util.logging.Slf4j
 import org.gradle.api.DefaultTask
@@ -52,7 +52,7 @@ class GuardrailGen extends DefaultTask {
     @Optional
     List<String> modules = []
 
-    private CLICommon cli = CLI$.MODULE$
+    private dev.guardrail.cli.CLICommon cli = dev.guardrail.cli.CLI$.MODULE$
 
     GuardrailGen() {
         outputDir = new File(project.buildDir, 'guardrail-sources')

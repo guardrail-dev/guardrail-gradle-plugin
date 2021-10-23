@@ -1,4 +1,4 @@
-package com.twilio.guardrail
+package dev.guardrail
 
 import org.gradle.api.Project
 import org.gradle.api.Plugin

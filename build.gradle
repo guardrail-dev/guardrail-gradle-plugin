@@ -18,18 +18,31 @@ repositories {
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
-    implementation "com.twilio:guardrail_2.12:0.64.3"
+
+    implementation "dev.guardrail:guardrail_2.12:0.65.5"
+    implementation "dev.guardrail:guardrail-cli_2.12:0.65.2"
+    implementation "dev.guardrail:guardrail-core_2.12:0.65.4"
+    implementation "dev.guardrail:guardrail-java-async-http_2.12:0.65.2"
+    implementation "dev.guardrail:guardrail-java-dropwizard_2.12:0.65.2"
+    implementation "dev.guardrail:guardrail-java-spring-mvc_2.12:0.65.2"
+    implementation "dev.guardrail:guardrail-java-support_2.12:0.65.2"
+    implementation "dev.guardrail:guardrail-scala-akka-http_2.12:0.65.2"
+    implementation "dev.guardrail:guardrail-scala-dropwizard_2.12:0.65.2"
+    implementation "dev.guardrail:guardrail-scala-endpoints_2.12:0.65.2"
+    implementation "dev.guardrail:guardrail-scala-http4s_2.12:0.65.4"
+    implementation "dev.guardrail:guardrail-scala-support_2.12:0.65.2"
+
     testImplementation('org.spockframework:spock-core:1.3-groovy-2.5') {
         exclude module: 'groovy-all'
     }
     testImplementation 'cglib:cglib-nodep:3.3.0'
 }
 
-group = 'com.twilio.guardrail'
+group = 'dev.guardrail'
 
 version = gitVersion().substring(1) // gradle-git-version does not support leading `v` in `v0.1.2`: https://github.com/palantir/gradle-git-version/issues/72
 
-description = 'Twilio Guardrail Generator Plugin'
+description = 'guardrail OpenAPI code generator plugin'
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
@@ -58,7 +71,7 @@ gradlePlugin {
     plugins {
         guardrailPlugin {
             id = project.group
-            implementationClass = 'com.twilio.guardrail.GuardrailGradlePlugin'
+            implementationClass = 'dev.guardrail.GuardrailGradlePlugin'
         }
     }
 }
@@ -85,7 +98,7 @@ check {
 
 pluginBundle {
   website = 'https://guardrail.dev/'
-  vcsUrl = 'https://github.com/twilio/guardrail'
+  vcsUrl = 'https://github.com/guardrail-dev/guardrail'
   description = 'Principled code generation from OpenAPI specifications'
   tags = ['openapi', 'swagger', 'codegen', 'scala', 'java']
 

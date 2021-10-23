@@ -1,4 +1,4 @@
-package com.twilio.guardrail
+package dev.guardrail
 
 import groovy.transform.ToString
 
