@@ -1,4 +1,4 @@
-# Gradle Swagger Generator Plugin [![Build Status](https://github.com/guardrail-dev/guardrail-gradle-plugin/workflows/CI/badge.svg)](https://github.com/twilio/guardrail-gradle-plugin/actions?query=workflow%3ACI) [![Gradle Status](https://gradleupdate.appspot.com/twilio/guardrail-gradle-plugin/status.svg)](https://gradleupdate.appspot.com/twilio/guardrail-gradle-plugin/status)
+# Gradle Swagger Generator Plugin [![Build Status](https://github.com/guardrail-dev/guardrail-gradle-plugin/workflows/CI/badge.svg)](https://github.com/guardrail-dev/guardrail-gradle-plugin/actions?query=workflow%3ACI) [![Gradle Status](https://gradleupdate.appspot.com/guardrail-dev/guardrail-gradle-plugin/status.svg)](https://gradleupdate.appspot.com/guardrail-dev/guardrail-gradle-plugin/status)
 
 Gradle plugin for [guardrail-dev/guardrail](https://github.com/guardrail-dev/guardrail) code generation.
 
