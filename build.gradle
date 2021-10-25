@@ -19,7 +19,7 @@ dependencies {
     implementation gradleApi()
     implementation localGroovy()
 
-    implementation "dev.guardrail:guardrail_2.12:0.65.5"
+    implementation "dev.guardrail:guardrail_2.12:0.66.0"
     implementation "dev.guardrail:guardrail-cli_2.12:0.65.2"
     implementation "dev.guardrail:guardrail-core_2.12:0.65.4"
     implementation "dev.guardrail:guardrail-java-async-http_2.12:0.65.2"
