@@ -25,7 +25,7 @@ jobs:
         distribution: 'zulu'
     - name: print Java version
       run: java -version
-    - uses: actions/cache@v2.1.7
+    - uses: actions/cache@v3.0.1
       with:
         path: ~/.gradle/caches
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
