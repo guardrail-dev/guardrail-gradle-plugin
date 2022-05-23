@@ -24,7 +24,7 @@ dependencies {
     implementation "dev.guardrail:guardrail-core_2.12:0.65.4"
     implementation "dev.guardrail:guardrail-java-async-http_2.12:0.65.2"
     implementation "dev.guardrail:guardrail-java-dropwizard_2.12:0.65.2"
-    implementation "dev.guardrail:guardrail-java-spring-mvc_2.12:0.65.2"
+    implementation "dev.guardrail:guardrail-java-spring-mvc_2.12:0.69.0"
     implementation "dev.guardrail:guardrail-java-support_2.12:0.65.2"
     implementation "dev.guardrail:guardrail-scala-akka-http_2.12:0.65.2"
     implementation "dev.guardrail:guardrail-scala-dropwizard_2.12:0.65.2"
