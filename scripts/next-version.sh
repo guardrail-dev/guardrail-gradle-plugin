@@ -8,7 +8,7 @@
 #   ... if not, emit that version to stdout
 
 # Extract library version
-version="$(grep -ho 'dev.guardrail:guardrail_2.12:[^"]*"' build.gradle | grep -ho '\<\([0-9]\+\)\(\.[0-9]\+\)\{1,\}')"
+version="$(grep -ho 'dev.guardrail:guardrail_2.13:[^"]*"' build.gradle | grep -ho '\<\([0-9]\+\)\(\.[0-9]\+\)\{1,\}')"
 
 exists=0
 # Check to see if we've already released for this library version
