@@ -12,7 +12,7 @@ java {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -47,18 +47,18 @@ description = 'guardrail OpenAPI code generator plugin'
 task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
     classifier "sources"
-    extension "jar"
+    archiveExtension "jar"
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
     classifier "javadoc"
-    extension "jar"
+    archiveExtension "jar"
 }
 
 publishing {
     publications {
-        mainMaven(MavenPublication) {
+        maven(MavenPublication) {
             from components.java
             artifact sourcesJar
             artifact javadocJar
