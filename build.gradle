@@ -32,9 +32,8 @@ dependencies {
     implementation "dev.guardrail:guardrail-scala-http4s_2.13:0.76.0"
     implementation "dev.guardrail:guardrail-scala-support_2.13:0.75.3"
 
-    testImplementation('org.spockframework:spock-core:1.3-groovy-2.5') {
-        exclude module: 'groovy-all'
-    }
+    testImplementation platform("org.spockframework:spock-bom:2.3-groovy-3.0")
+    testImplementation "org.spockframework:spock-core"
     testImplementation 'cglib:cglib-nodep:3.3.0'
 }
 
