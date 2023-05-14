@@ -43,7 +43,7 @@ group = 'dev.guardrail'
 
 version = gitVersion().substring(1) // gradle-git-version does not support leading `v` in `v0.1.2`: https://github.com/palantir/gradle-git-version/issues/72
 
-description = 'guardrail OpenAPI code generator plugin'
+description = 'Principled code generation from OpenAPI specifications'
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
@@ -67,10 +67,15 @@ publishing {
 
 
 gradlePlugin {
+    website = 'https://guardrail.dev/'
+    vcsUrl = 'https://github.com/guardrail-dev/guardrail'
     plugins {
         guardrailPlugin {
             id = project.group
             implementationClass = 'dev.guardrail.GuardrailGradlePlugin'
+            displayName = 'guardrail Gradle Plugin'
+            description = project.description
+            tags.set(['openapi', 'swagger', 'codegen', 'scala', 'java'])
         }
     }
 }
@@ -93,17 +98,4 @@ task functionalTest(type: Test) {
 check {
     // Run the functional tests as part of `check`
     dependsOn(tasks.functionalTest)
-}
-
-pluginBundle {
-  website = 'https://guardrail.dev/'
-  vcsUrl = 'https://github.com/guardrail-dev/guardrail'
-  description = 'Principled code generation from OpenAPI specifications'
-  tags = ['openapi', 'swagger', 'codegen', 'scala', 'java']
-
-  plugins {
-    guardrailPlugin {
-      displayName = 'guardrail gradle plugin'
-    }
-  }
 }
