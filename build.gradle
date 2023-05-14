@@ -48,13 +48,11 @@ description = 'guardrail OpenAPI code generator plugin'
 task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
     classifier "sources"
-    archiveExtension "jar"
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
     classifier "javadoc"
-    archiveExtension "jar"
 }
 
 publishing {
