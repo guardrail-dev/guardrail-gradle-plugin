@@ -29,7 +29,7 @@ dependencies {
     implementation "dev.guardrail:guardrail-java-support_2.13:0.73.1"
     implementation "dev.guardrail:guardrail-scala-akka-http_2.13:0.76.0"
     implementation "dev.guardrail:guardrail-scala-dropwizard_2.13:0.72.0"
-    implementation "dev.guardrail:guardrail-scala-http4s_2.13:0.76.0"
+    implementation "dev.guardrail:guardrail-scala-http4s_2.13:0.76.1"
     implementation "dev.guardrail:guardrail-scala-support_2.13:0.75.3"
 
     testImplementation platform("org.spockframework:spock-bom:2.3-groovy-3.0")
