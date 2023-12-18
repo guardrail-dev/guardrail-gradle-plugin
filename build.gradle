@@ -22,7 +22,7 @@ dependencies {
 
     implementation "dev.guardrail:guardrail_2.13:0.71.0"
     implementation "dev.guardrail:guardrail-cli_2.13:0.71.0"
-    implementation "dev.guardrail:guardrail-core_2.13:0.75.3"
+    implementation "dev.guardrail:guardrail-core_2.13:0.75.4"
     implementation "dev.guardrail:guardrail-java-async-http_2.13:0.72.0"
     implementation "dev.guardrail:guardrail-java-dropwizard_2.13:0.72.0"
     implementation "dev.guardrail:guardrail-java-spring-mvc_2.13:0.71.2"
