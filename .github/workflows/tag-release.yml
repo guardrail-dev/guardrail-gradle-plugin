@@ -39,7 +39,7 @@ jobs:
         echo "VERSION=${version}" >> $GITHUB_ENV
     - name: Publish release notes
       if: steps.guessversion.outputs.exists == 0
-      uses: release-drafter/release-drafter@v5
+      uses: release-drafter/release-drafter@v6
       with:
         name: "v${{ env.VERSION }}"
         tag: "v${{ env.VERSION }}"
